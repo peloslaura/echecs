@@ -1,0 +1,81 @@
+/*#include <iostream>
+#include <vector>
+#include <string>
+#include "cavalier.hpp"
+#include "piece.hpp"
+
+class Cavalier : public Piece {
+
+    public : 
+
+    //Constructeur
+    Cavalier(string couleur, string nom, int id, square position) 
+        : Piece(couleur, nom, id, position) {} //Appel du constructeur parent
+
+    //Destructeur 
+    virtual ~Cavalier() {}
+
+    virtual bool est_mouvement_legal(square case_origine, square case_destination)
+    {
+        string orig = case_origine.to_string();
+        string dest = case_destination.to_string();
+
+        //Déplacement vertical de deux cases puis horizontal d'une case
+        if(dest[1] == orig[1] + 2 || dest[1] == orig[1] - 2) {
+            if(dest[0] == orig[0] + 1 || dest[0] == orig[0] - 1) {
+                //Vérification de la prise
+                if(case_destination.est_occupee()) {
+                    return case_destination.get_piece()->get_couleur() != this->get_couleur();
+                } //case occupée par un ennemi :  retourne true, sinon retourne false
+                return true;
+            }
+        }
+
+        //Déplacement horizontal de deux cases puis vertical d'une case
+        if(dest[0] == orig[0] + 2 || dest[0] == orig[0] - 2) {
+            if(dest[1] == orig[1] + 1 || dest[1] == orig[1] - 1) {
+                if(case_destination.est_occupee()) {
+                    return case_destination.get_piece()->get_couleur() != this->get_couleur();
+                }
+                return true;
+            }
+        }
+
+        return false;
+    }
+};*/
+
+#include "cavalier.hpp"
+#include "piece.hpp"
+#include "square.hpp"
+#include <cmath> // Pour abs()
+
+using namespace std;
+
+// Constructeur
+Cavalier::Cavalier(string couleur, string nom, int id, Square position)
+    : Piece(couleur, nom, id, position) {}
+
+// Destructeur
+Cavalier::~Cavalier() {}
+
+// Vérification du mouvement légal
+bool Cavalier::est_mouvement_legal(Square case_origine, Square case_destination) const {
+    int delta_ligne = abs(case_destination.get_ligne() - case_origine.get_ligne());
+    int delta_col = abs(case_destination.get_colonne() - case_origine.get_colonne());
+
+    // Le cavalier se déplace en L : (2,1) ou (1,2)
+    bool mouvement_en_L = (delta_ligne == 2 && delta_col == 1) || 
+                         (delta_ligne == 1 && delta_col == 2);
+
+    if (!mouvement_en_L) {
+        return false;
+    }
+
+    // Vérification de la prise
+    if (case_destination.est_occupee()) {
+        return case_destination.get_piece()->get_couleur() != this->get_couleur();
+    }
+
+    return true;
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Wvla",
+      "-pedantic",
+      "-fsanitize=address,undefined",
+      "-pthread",
+      "-Werror",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/obj/echiquier.o",
+      "src/echiquier.cpp"
+    ],
+    "directory": "/home/thanatos/Scolarité/TPS/1A/TP/CPP/LAURA/echecs",
+    "file": "/home/thanatos/Scolarité/TPS/1A/TP/CPP/LAURA/echecs/src/echiquier.cpp",
+    "output": "/home/thanatos/Scolarité/TPS/1A/TP/CPP/LAURA/echecs/build/obj/echiquier.o"
+  }
+]

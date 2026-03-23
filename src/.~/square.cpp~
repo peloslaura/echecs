@@ -1,0 +1,104 @@
+/*#include <iostream>
+#include <vector>
+#include <string>
+#include <stdexcept> // Nécessaire pour std::invalid_argument
+#include "square.hpp"
+
+// Déclaration anticipée de la classe Piece
+class Piece;
+
+class Square {
+public:
+    // Constructeur paramétré
+    Square(const int l, const int c) 
+        : ligne(l), colonne(c), piece_(nullptr) 
+    {
+        if(l < 1 || l > 8 || c < 1 || c > 8) {
+            throw std::invalid_argument("Les coordonnées doivent être entre 1 et 8");
+        }
+    }
+
+    // Constructeur paramétré à partir d'un string
+    Square(std::string notation) 
+        : piece_(nullptr)
+    {
+        if(notation.length() != 2) {
+            throw std::invalid_argument("La notation algébrique doit contenir 2 caractères");
+        }
+
+        colonne = notation[0] - 'a' + 1; 
+        ligne = notation[1] - '0';
+
+        if(ligne < 1 || ligne > 8 || colonne < 1 || colonne > 8) {
+            throw std::invalid_argument("Les coordonnées doivent être entre 1 et 8");
+        }
+    }
+
+    std::string to_string() const {
+        std::string notation;
+        notation += char('a' + colonne - 1); 
+        notation += char('0' + ligne);
+        return notation;
+    }
+
+    // Méthode pour vérifier si la case est occupée
+    bool est_occupee() const {
+        return piece_ != nullptr;
+    }
+
+private: 
+    const int ligne;
+    const int colonne;
+    Piece* piece_;
+};*/
+
+#include "square.hpp"
+#include "piece.hpp"
+#include <stdexcept>
+#include <string>
+
+using namespace std;
+
+// Constructeur avec coordonnées numériques
+Square::Square(int l, int c) : ligne(l), colonne(c), piece_(nullptr) {
+    if(l < 1 || l > 8 || c < 1 || c > 8) {
+        throw invalid_argument("Les coordonnées doivent être entre 1 et 8");
+    }
+}
+
+// Constructeur avec notation algébrique
+Square::Square(string notation) : piece_(nullptr) {
+    if(notation.length() != 2) {
+        throw invalid_argument("La notation algébrique doit contenir 2 caractères");
+    }
+
+    colonne = tolower(notation[0]) - 'a' + 1;
+    ligne = notation[1] - '0';
+
+    if(ligne < 1 || ligne > 8 || colonne < 1 || colonne > 8) {
+        throw invalid_argument("Coordonnées invalides");
+    }
+}
+
+// Conversion en notation algébrique
+string Square::to_string() const {
+    string notation;
+    notation += char('a' + colonne - 1);
+    notation += char('0' + ligne);
+    return notation;
+}
+
+// Vérifie si la case est occupée
+bool Square::est_occupee() const {
+    return piece_ != nullptr;
+}
+
+// Getters
+int Square::get_ligne() const { return ligne; }
+int Square::get_colonne() const { return colonne; }
+Piece* Square::get_piece() const { return piece_; }
+
+// Setter pour la pièce
+void Square::set_piece(Piece* p) {
+    piece_ = p;
+}

@@ -1,0 +1,52 @@
+/*#ifndef ECHIQUIER_HPP
+#define ECHIQUIER_HPP
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include "Piece.hpp"
+
+class Echiquier {
+public:
+    Echiquier();
+    void affiche() const;
+    Piece* get_piece(const Square& s);
+
+private:
+    Piece* echiquier[8][8] = {{nullptr}};
+    std::vector<Piece*> pieces[2];
+
+    void alloc_mem_echiquier();
+    void pose_piece(Piece* p, const Square& s);
+};
+
+#endif // ECHIQUIER_HPP*/
+
+#ifndef ECHIQUIER_HPP
+#define ECHIQUIER_HPP
+
+#include <vector>
+#include <string>
+#include "piece.hpp"
+#include "square.hpp"
+
+enum Couleur { Blanc, Noir };
+
+class Echiquier {
+private:
+    Piece*** echiquier;
+    std::vector<Piece*> pieces[2]; // 0: Blanc, 1: Noir
+
+public:
+    Echiquier();
+    ~Echiquier();
+    
+    void alloc_mem_echiquier();
+    void affiche() const;
+    Piece* get_piece(Square s) const;
+    void pose_piece(Piece* p, Square pos);
+    
+    // Ajoutez ici d'autres méthodes nécessaires
+};
+
+#endif

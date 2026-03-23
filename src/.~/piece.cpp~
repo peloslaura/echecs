@@ -1,0 +1,66 @@
+/*#include <iostream>
+#include <vector>
+#include <string>
+
+class Piece{
+
+    public:
+
+        //Constructeur paramétré
+        Piece(std::string c, string n, int i, Square pos){
+            nom = n;
+            couleur = c;
+            id = i;
+            position = pos;
+        }
+
+        void affiche(){
+            std::cout<<nom<<std::endl;
+            return;
+        }
+
+        void get_position(){
+            std::cout<<position.to_string()<<std:endl;
+            return;
+        }
+
+        void get_couleur(){
+            std::cout<<couleur<<std::endl;
+            return;
+        }
+
+        virtual void est_mouvement_legal(Square case_origine, Square case_destination) = 0;
+
+
+    private : 
+        string couleur; 
+        string nom;
+        int id;
+        Square position;
+
+}*/
+
+#include <iostream>
+#include <string>
+#include "piece.hpp"  // On inclut le header correspondant
+
+// Constructeur paramétré
+Piece::Piece(std::string c, std::string n, int i, Square pos)
+    : couleur(c), nom(n), id(i), position(pos)  // Liste d'initialisation
+{
+}
+
+void Piece::affiche()
+{
+    std::cout << nom << std::endl;
+}
+
+void Piece::get_position()
+{
+    std::cout << position.to_string() << std::endl;
+}
+
+void Piece::get_couleur()
+{
+    std::cout << couleur << std::endl;
+}

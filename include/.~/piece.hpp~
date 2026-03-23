@@ -1,0 +1,112 @@
+#ifndef PIECE_HPP
+#define PIECE_HPP
+
+#include <string>
+#include "square.hpp"
+
+class Piece {
+public:
+    // Constructeur paramétré
+    Piece(std::string c, std::string n, int i, Square pos);
+    void affiche();
+    void get_position();
+    void get_couleur();
+    virtual bool est_mouvement_legal(Square case_origine, Square case_destination) const = 0;
+private:
+    std::string couleur;
+    std::string nom;
+    int id;
+    Square position;
+};
+
+#endif
+#ifndef CAVALIER_HPP
+#define CAVALIER_HPP
+
+#include "piece.hpp"
+#include "square.hpp"
+#include <string>
+
+class Cavalier : public Piece {
+public:
+    Cavalier(std::string couleur, std::string nom, int id, Square position);
+    bool est_mouvement_legal(Square case_origine, Square case_destination) const override;
+};
+
+#endif
+#ifndef DAME_HPP
+#define DAME_HPP
+
+#include "piece.hpp"
+#include "square.hpp"
+#include <string>
+
+class Dame : public Piece {
+public:
+    Dame(std::string couleur, std::string nom, int id, Square position);
+    virtual ~Dame();
+    bool est_mouvement_legal(Square case_origine, Square case_destination) const override;
+};
+
+#endif
+#ifndef FOU_HPP
+#define FOU_HPP
+
+#include "piece.hpp"
+#include "square.hpp"
+#include <string>
+
+class Fou : public Piece {
+public:
+    Fou(std::string couleur, std::string nom, int id, Square position);
+    virtual ~Fou();
+    bool est_mouvement_legal(Square case_origine, Square case_destination) const override;
+};
+
+#endif
+#ifndef PION_HPP
+#define PION_HPP
+
+#include "piece.hpp"
+#include "square.hpp"
+#include <string>
+
+class Pion : public Piece {
+public:
+    Pion(std::string couleur, std::string nom, int id, Square position);
+    virtual ~Pion();
+    bool est_mouvement_legal(Square case_origine, Square case_destination) const override;
+    
+private:
+    bool aBouge;
+};
+
+#endif
+#ifndef ROI_HPP
+#define ROI_HPP
+
+#include "piece.hpp"
+#include "square.hpp"
+#include <string>
+
+class Roi : public Piece {
+public:
+    Roi(std::string couleur, std::string nom, int id, Square position);
+    virtual ~Roi();
+    bool est_mouvement_legal(Square case_origine, Square case_destination) override;
+};
+
+#endif#ifndef TOUR_HPP
+#define TOUR_HPP
+
+#include "piece.hpp"
+#include "square.hpp"
+#include <string>
+
+class Tour : public Piece {
+public:
+    Tour(std::string couleur, std::string nom, int id, Square position);
+    bool est_mouvement_legal(Square case_origine, Square case_destination) override;
+};
+
+#endif
